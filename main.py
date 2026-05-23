@@ -178,9 +178,15 @@ def build_message(sender, recipient, subject, body, attachment_path):
     msg["To"] = recipient
     msg["Subject"] = subject
 
-    # ── Personalise: replace <company_name> placeholder ──────
-    company = extract_company_name(recipient)
-    personalised_body = body.replace("&lt;company_name&gt;", company)
+    # ── Personalise: replace <company_name> placeholder (optional) ──
+    # Only substitutes if the placeholder is present in the template.
+    # Users whose template doesn't use it get the body sent as-is.
+    PLACEHOLDER = "&lt;company_name&gt;"
+    if PLACEHOLDER in body:
+        company = extract_company_name(recipient)
+        personalised_body = body.replace(PLACEHOLDER, company)
+    else:
+        personalised_body = body
 
     # ── Send as HTML so the template renders correctly ───────
     msg.set_content(personalised_body, subtype="html")
