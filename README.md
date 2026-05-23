@@ -1,25 +1,6 @@
 # Walkthrough — Job Application Email Sender Rewrite
 
-## What Changed
-
-### `main.py` — full rewrite
-
-| Section | Before | After |
-|---|---|---|
-| Config | CLI args (`argparse`) | `.env` only — fully dynamic |
-| Scheduling | `time.sleep()` inside script | OS scheduler (cron / Task Scheduler) |
-| Logging | `print()` only | Rotating file + console (`logging`) |
-| Error handling | Minimal | Per-category SMTP errors, file errors, fatal vs retryable |
-| Recipient management | No tracking | Processed addresses move to `processed.txt` with timestamp |
-
-### Functions kept **100% untouched**
-- `read_recipients()`
-- `build_message()`
-- `send_emails()`
-
----
-
-## New `.env` Variables to Add
+## `.env` Variables to Add
 
 Open `.env` in the project root and add:
 
