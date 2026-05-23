@@ -1,0 +1,14 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+.env
+walkthrough.md
+poojan_aiml_email_template_outlook_safe.html
+email_sender.log
